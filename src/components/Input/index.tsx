@@ -1,4 +1,4 @@
-import {
+import React, {
   useEffect,
   useRef,
   useState,
@@ -8,11 +8,12 @@ import {
 import { useField } from '@unform/core';
 
 import { Container } from './styles';
+import { IconBaseProps } from 'react-icons';
 
 interface InputProps {
   name: string;
   placeholder: string;
-  // icon: ;
+  icon?:React.ComponentType<IconBaseProps>
 }
 
 const Input = ({ name, placeholder, icon: Icon, ...rest }: InputProps) => {
@@ -43,12 +44,13 @@ const Input = ({ name, placeholder, icon: Icon, ...rest }: InputProps) => {
 
   return (
     <Container isFilled={isFilled} isFocused={isFocused}>
-      {Icon && <Icon size={20} />}s
+      {Icon && <Icon size={20} />}
 
       <input
         onFocus={handleInputFocus}
         onBlur={handleInputBlur}
         defaultValue={defaultValue}
+        placeholder={placeholder}
         ref={inputRef}
         {...rest}
       />
